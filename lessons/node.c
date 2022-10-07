@@ -3,7 +3,7 @@
 
 struct node {
   int data;
-  struct node *link;
+  struct node *link;  // pointer to the structure node
 };
 
 int main() {
