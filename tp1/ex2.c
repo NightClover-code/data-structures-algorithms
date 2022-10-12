@@ -1,5 +1,7 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void sort(int *arr, int n) {
   int i, j, temp;
@@ -29,9 +31,12 @@ int main() {
   printf("N: ");
   scanf("%d: ", &n);
 
+  srand(time(NULL));
+
+  arr = (int *)malloc(n * sizeof(int));
+
   for (i = 0; i < n; i++) {
-    printf("arr[%d]: ", i);
-    scanf("%d", &arr[i]);
+    *(arr + i) = rand();
   }
 
   printf("Previous array: ");
@@ -43,6 +48,8 @@ int main() {
   printf("\nSorted array: ");
 
   printArr(arr, n);
+
+  printf("\nComparaisons: %.2f", pow(n, 2) + n - 1);
 
   return 0;
 }
