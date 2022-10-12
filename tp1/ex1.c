@@ -16,7 +16,7 @@ int main() {
     *(arr + i) = rand();
 
     printf("%d, ", *(arr + i));
-  }
+  } 
 
   max = *arr;
 
