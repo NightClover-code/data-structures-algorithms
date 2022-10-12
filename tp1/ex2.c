@@ -6,9 +6,9 @@
 void sort(int *arr, int n) {
   int i, j, temp;
 
-  for (i = 0; i < n; i++) {
-    for (j = i + 1; j < n; j++) {
-      if (*(arr + i) > *(arr + j)) {
+  for (i = 0; i < n; i++) {           // n iteration
+    for (j = i + 1; j < n; j++) {     // n * (n + 1) / 2 - 1 iteration
+      if (*(arr + i) > *(arr + j)) {  // n * (n - 1) /2 iteration
         temp = *(arr + i);
         *(arr + i) = *(arr + j);
         *(arr + j) = temp;
@@ -31,6 +31,8 @@ int main() {
   printf("N: ");
   scanf("%d: ", &n);
 
+  float c = n + (n * (n - 1)) / (float)2 + (n * (n + 1)) / (float)2 - 1;
+
   srand(time(NULL));
 
   arr = (int *)malloc(n * sizeof(int));
@@ -49,7 +51,8 @@ int main() {
 
   printArr(arr, n);
 
-  printf("\nComparaisons: %.2f", pow(n, 2) + n - 1);
+  printf("\nComparaisons reelles: %.2f", c);
+  printf("\nComparaisons cours: %.2f", pow(n, 2) + n - 1);
 
   return 0;
 }
