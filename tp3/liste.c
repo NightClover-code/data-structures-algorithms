@@ -97,14 +97,14 @@ void remove_end(struct node* head) {
   }
 }
 
-void remove_at_position(struct node** head, int pos) {
-  struct node* current = *head;
-  struct node* previous = *head;
+void remove_at_position(struct node** head_ref, int pos) {
+  struct node* current = *head_ref;
+  struct node* previous = *head_ref;
 
-  if (*head == NULL) {
+  if (*head_ref == NULL) {
     printf("List is already empty!");
   } else if (pos == 1) {
-    *head = current->link;
+    *head_ref = current->link;
     free(current);
     current = NULL;
   } else {
@@ -139,4 +139,17 @@ void search(struct node* head, int num) {
   if (found == false) {
     printf("%d is not in the list.", num);
   }
+}
+
+void destroy_list(struct node** head_ref) {
+  struct node* current = *head_ref;
+  struct node* next;
+
+  while (current != NULL) {
+    next = current->link;
+    free(current);
+    current = next;
+  }
+
+  *head_ref = NULL;
 }
