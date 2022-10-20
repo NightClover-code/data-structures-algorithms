@@ -4,6 +4,12 @@
 #include <time.h>
 
 void sort(int *arr, int n) {
+  /*
+    NOTE: This is known as Bubble Sort. A slow sorting algorithm, but definitely
+    an easy one to implement.
+
+    Bubble sort time complexity: O(n²) worst/average case, O(1) best case.
+  */
   int i, j, temp;
 
   for (i = 0; i < n; i++) {           // n iteration

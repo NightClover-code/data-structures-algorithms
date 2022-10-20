@@ -3,6 +3,10 @@
 #include <time.h>
 
 int main() {
+  /*
+    NOTE: Using pointers for arrays is optional here. It's also a good habit to
+    practice pointers.
+  */
   int n, i, max, *arr;
 
   printf("N: ");
@@ -16,7 +20,7 @@ int main() {
     *(arr + i) = rand();
 
     printf("%d, ", *(arr + i));
-  } 
+  }
 
   max = *arr;
 

@@ -4,6 +4,13 @@
 #include <stdlib.h>
 
 int cherche_dicht(int *arr, int n, int key) {
+  /*
+    NOTE: This is known as Binary Search, a faster algorithm than linear search
+    for arrays. The drawback is that the array MUST be sorted before doing the
+    search.
+
+    Binary search time complexity: O(log(n)) worst/average case, O(1) best case.
+  */
   int d = 1, f = n, i = 0;
   bool trouve = false;
 
