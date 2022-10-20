@@ -10,9 +10,7 @@ int main() {
   insert_at_end(head, 100);
   insert_at_end(head, 200);
 
-  remove_end(head);
-
-  print_list_data(head);
+  search(head, 45);
 
   return 0;
 }

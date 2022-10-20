@@ -12,5 +12,7 @@ void insert_at_end(struct node *head, int num);
 struct node *insert_at_beginning(struct node *head, int num);
 struct node *remove_beginning(struct node *head);
 void remove_end(struct node *head);
+void remove_at_position(struct node **head, int pos);
+void search(struct node *head, int num);
 
 #endif

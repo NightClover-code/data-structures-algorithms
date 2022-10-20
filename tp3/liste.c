@@ -1,5 +1,6 @@
 #include "liste.h"
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,28 +29,28 @@ void print_list_data(struct node* head) {
     printf("Linked list is empty!");
   }
 
-  struct node* ptr = NULL;
-  ptr = head;
+  struct node* current = NULL;
+  current = head;
 
-  while (ptr != NULL) {  // printing linked list data
-    printf("%d, ", ptr->data);
-    ptr = ptr->link;
+  while (current != NULL) {  // printing linked list data
+    printf("%d, ", current->data);
+    current = current->link;
   }
 }
 
 void insert_at_end(struct node* head, int num) {
-  struct node *ptr, *end;
-  ptr = head;
+  struct node *current, *end;
+  current = head;
   end = malloc(sizeof(struct node));
 
   end->data = num;
   end->link = NULL;
 
-  while (ptr->link != NULL) {  // traversing a linked list
-    ptr = ptr->link;
+  while (current->link != NULL) {  // traversing a linked list
+    current = current->link;
   }
 
-  ptr->link = end;  // insert node at end
+  current->link = end;  // insert node at end
 }
 
 struct node* insert_at_beginning(struct node* head, int num) {
@@ -82,16 +83,60 @@ void remove_end(struct node* head) {
     free(head);
     head = NULL;
   } else {
-    struct node* temp = head;
-    struct node* temp2 = head;
+    struct node* current = head;
+    struct node* previous = head;
 
-    while (temp->link != NULL) {  // temp is always one node ahead of temp2
-      temp2 = temp;
-      temp = temp->link;
+    while (current->link != NULL) {
+      previous = current;
+      current = current->link;
     }
 
-    free(temp);
-    temp = NULL;
-    temp2->link = NULL;
+    free(current);
+    current = NULL;
+    previous->link = NULL;
+  }
+}
+
+void remove_at_position(struct node** head, int pos) {
+  struct node* current = *head;
+  struct node* previous = *head;
+
+  if (*head == NULL) {
+    printf("List is already empty!");
+  } else if (pos == 1) {
+    *head = current->link;
+    free(current);
+    current = NULL;
+  } else {
+    while (pos != 1) {
+      previous = current;
+      current = current->link;
+      pos--;
+    }
+
+    previous->link = current->link;
+    free(current);
+    current = NULL;
+  }
+}
+
+void search(struct node* head, int num) {
+  int pos = 1;
+  bool found = false;
+
+  struct node* current = head;
+
+  while (current != NULL) {
+    if (current->data == num) {
+      found = true;
+      printf("%d found at position %d", num, pos);
+    }
+
+    current = current->link;
+    pos++;
+  }
+
+  if (found == false) {
+    printf("%d is not in the list.", num);
   }
 }
