@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,13 +30,14 @@ int menu() {
 
 int main() {
   struct node* head = NULL;
+  struct node* new_head = NULL;
   int code = menu();
+  int num1, num2, num, pos;
+  bool quit = false;
 
-  while (1) {
+  while (!quit) {
     switch (code) {
       case 1:
-        int num1, num2;
-
         printf("\nEnter 2 numbers: ");
         scanf("%d %d", &num1, &num2);
 
@@ -46,19 +48,72 @@ int main() {
         code = menu();
         break;
       case 2:
-        int num;
-
         printf("\nEnter a number to insert: ");
         scanf("%d", &num);
 
-        struct node* new_head = insert_at_beginning(head, num);
-
+        new_head = insert_at_beginning(head, num);
         head = new_head;
 
-        printf("\nList after insert: ");
+        printf("\nList after insert at beginning: ");
         print_list_data(head);
         code = menu();
         break;
+      case 3:
+        printf("\nEnter a number to insert: ");
+        scanf("%d", &num);
+
+        insert_at_end(head, num);
+
+        printf("\nList after insert at end: ");
+        print_list_data(head);
+        code = menu();
+        break;
+      case 4:
+        new_head = remove_beginning(head);
+        head = new_head;
+
+        printf("\nList after remove beginning: ");
+        print_list_data(head);
+        code = menu();
+        break;
+      case 5:
+        remove_end(head);
+
+        printf("\nList after remove end: ");
+        print_list_data(head);
+        code = menu();
+        break;
+      case 6:
+        printf("\nEnter position of number to remove: ");
+        scanf("%d", &pos);
+
+        remove_at_position(&head, pos);
+
+        printf("\nList after remove end: ");
+        print_list_data(head);
+        code = menu();
+        break;
+      case 7:
+        printf("\nList: ");
+        print_list_data(head);
+        code = menu();
+        break;
+      case 8:
+        printf("\nEnter the number to find: ");
+        scanf("%d", &num);
+
+        search(head, num);
+
+        code = menu();
+        break;
+      case 9:
+        destroy_list(&head);
+
+        print_list_data(head);
+        code = menu();
+        break;
+      case 10:
+        quit = true;
       default:
         break;
     }
