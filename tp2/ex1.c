@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-int insert(int arr[], int n, int i, int m) {
-  for (int j = n - 1; j >= i; j--) {
-    arr[j + 1] = arr[j];
+int insert_at_position(int arr[], int n, int pos, int m) {
+  for (int i = n - 1; i >= pos; i--) {
+    arr[i + 1] = arr[i];
   }
 
-  arr[i] = m;
+  arr[pos] = m;
 
   n++;
 
@@ -47,7 +47,7 @@ int main() {
 
   printArr(arr, n);
 
-  n = insert(arr, n, pos, 99);
+  n = insert_at_position(arr, n, pos, 99);
 
   printf("\nNew array: ");
 

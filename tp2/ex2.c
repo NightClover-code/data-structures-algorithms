@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 
+int remove_at_position(int arr[], int n, int pos) {
+  for (int i = pos; i <= n - 2; i++) {
+    arr[i] = arr[i + 1];
+  }
+
+  n--;
+
+  return n;
+}
+
 void printArr(int *arr, int n) {
   int *p;
 
@@ -17,26 +27,29 @@ void randomizeArray(int *arr, int n) {
 }
 
 int main() {
-  // int *arr, n;
+  int *arr, n, pos;
 
-  // printf("N: ");
-  // scanf("%d", &n);
+  printf("N: ");
+  scanf("%d", &n);
 
-  // srand(time(NULL));
+  printf("Position: ");
+  scanf("%d", &pos);
 
-  // arr = (int *)malloc(n * sizeof(int));
+  srand(time(NULL));
 
-  // randomizeArray(arr, n);
+  arr = (int *)malloc(n * sizeof(int));
 
-  // printf("Previous array: ");
+  randomizeArray(arr, n);
 
-  // printArr(arr, n);
+  printf("Previous array: ");
 
-  // n = insert(arr, n, 2, 99);
+  printArr(arr, n);
 
-  // printf("\nNew array: ");
+  n = remove_at_position(arr, n, pos);
 
-  // printArr(arr, n);
+  printf("\nNew array: ");
+
+  printArr(arr, n);
 
   return 0;
 }
