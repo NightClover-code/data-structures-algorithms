@@ -31,11 +31,11 @@ int menu() {
 int main() {
   struct node* head = NULL;
   struct node* new_head = NULL;
-  int code = menu();
-  int num1, num2, num, pos;
+  int num1, num2, num, pos, code;
   bool quit = false;
 
   while (!quit) {
+    code = menu();
     switch (code) {
       case 1:
         printf("\nEnter 2 numbers: ");
@@ -45,7 +45,6 @@ int main() {
 
         printf("\nCreated list: ");
         print_list_data(head);
-        code = menu();
         break;
       case 2:
         printf("\nEnter a number to insert: ");
@@ -56,7 +55,6 @@ int main() {
 
         printf("\nList after insert at beginning: ");
         print_list_data(head);
-        code = menu();
         break;
       case 3:
         printf("\nEnter a number to insert: ");
@@ -66,7 +64,6 @@ int main() {
 
         printf("\nList after insert at end: ");
         print_list_data(head);
-        code = menu();
         break;
       case 4:
         new_head = remove_beginning(head);
@@ -74,14 +71,12 @@ int main() {
 
         printf("\nList after remove beginning: ");
         print_list_data(head);
-        code = menu();
         break;
       case 5:
         remove_end(head);
 
         printf("\nList after remove end: ");
         print_list_data(head);
-        code = menu();
         break;
       case 6:
         printf("\nEnter position of number to remove: ");
@@ -91,12 +86,10 @@ int main() {
 
         printf("\nList after remove end: ");
         print_list_data(head);
-        code = menu();
         break;
       case 7:
         printf("\nList: ");
         print_list_data(head);
-        code = menu();
         break;
       case 8:
         printf("\nEnter the number to find: ");
@@ -104,13 +97,11 @@ int main() {
 
         search(head, num);
 
-        code = menu();
         break;
       case 9:
         destroy_list(&head);
 
         print_list_data(head);
-        code = menu();
         break;
       case 10:
         quit = true;
