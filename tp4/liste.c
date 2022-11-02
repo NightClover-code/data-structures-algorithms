@@ -125,7 +125,7 @@ bool extraire_objet(Liste* li, Objet* objet) {
   return true;
 }
 
-bool chercher_objet(Liste* li, Objet* objet_cherche) {
+Objet* chercher_objet(Liste* li, Objet* objet_cherche) {
   Objet* courant_objet;
   bool trouve = false;
 

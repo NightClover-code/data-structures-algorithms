@@ -39,7 +39,7 @@ Objet* extraire_en_tete(Liste* li);
 static Objet* extraire_apres(Liste* li, Element* precedent);
 Objet* extraire_fin(Liste* li);
 bool extraire_objet(Liste* li, Objet* objet);
-bool chercher_objet(Liste* li, Objet* objet_cherche);
+Objet* chercher_objet(Liste* li, Objet* objet_cherche);
 void lister_liste(Liste* li);
 void detruire_liste(Liste* li);
 
