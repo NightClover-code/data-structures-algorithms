@@ -25,7 +25,7 @@ static void ouvrir_liste(Liste* li);
 static bool fin_liste(Liste* li);
 static bool liste_vide(Liste* li);
 
-static Element* element_courant(Liste* li);
+static Element* deplacer_courant(Liste* li);
 static Objet* objet_courant(Liste* li);
 
 void init_liste(Liste* li, int type, char* (*afficher)(Objet*),

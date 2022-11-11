@@ -33,7 +33,6 @@ void init_liste(Liste* li, int type, char* (*afficher)(Objet*),
   li->nbElt = 0;
   li->type = type;
   li->afficher = afficher;
-
   li->comparer = comparer;
 }
 
@@ -98,7 +97,7 @@ Objet* extraire_fin(Liste* li) {
   Objet* objet_extrait;
   if (liste_vide(li)) {
     objet_extrait = NULL;
-  } else if (li->dernier == li->dernier) {
+  } else if (li->premier == li->dernier) {
     objet_extrait = extraire_en_tete(li);
   } else {
     Element* ptc = li->premier;

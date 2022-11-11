@@ -72,7 +72,20 @@ void part2() {
 }
 
 int main() {
-  part2();
+  int n;
+  char *s;
+
+  s = (char *)calloc(1, sizeof(s));
+
+  printf("String: ");
+  scanf("%s", s);
+
+  printf("N: ");
+  scanf("%d", &n);
+
+  printf("%s", multichar(s, n));
+
+  // part2();
 
   return 0;
 }
