@@ -1,4 +1,7 @@
+#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "liste.h"
 #include "personne.h"
@@ -23,11 +26,12 @@ int menu() {
   return code;
 }
 
-void main() {
+int main() {
   Liste* lp = creer_liste(0, afficher_personne, comparer_personne);
   bool fini = false;
   Personne *p, *pp, *extrait, *personne_cherche;
   ch15 nom, prenom;
+
   while (!fini) {
     switch (menu()) {
       case 0:
@@ -95,4 +99,6 @@ void main() {
         break;
     }
   }
+
+  return 0;
 }
