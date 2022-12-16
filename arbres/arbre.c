@@ -53,21 +53,21 @@ void postfixe(Noeud* racine, char* (*afficher)(Objet*)) {
   }
 }
 
-Noeud* trouverNoeud(Noeud* racine, Objet* obj,
-                    int (*comparer)(Objet*, Objet*)) {
+Noeud* trouver_noeud(Noeud* racine, Objet* obj,
+                     int (*comparer)(Objet*, Objet*)) {
   Noeud* pNom;
   if (racine == NULL) {
     pNom = NULL;
   } else if (comparer(racine->reference, obj) == 0)
     pNom = racine;
   else {
-    pNom = trouverNoeud(racine->gauche, obj, comparer);
-    if (pNom == NULL) pNom = trouverNoeud(racine->droite, obj, comparer);
+    pNom = trouver_noeud(racine->gauche, obj, comparer);
+    if (pNom == NULL) pNom = trouver_noeud(racine->droite, obj, comparer);
   }
   return pNom;
 }
 
-void enLargeur(Noeud* racine, char* (*afficher)(Objet*)) {
+void en_largeur(Noeud* racine, char* (*afficher)(Objet*)) {
   Liste* li = cree_liste(0, afficher, NULL);
   inserer_en_fin(li, racine);
   while (!liste_vide(li)) {
@@ -110,4 +110,30 @@ int nbFeuilles(Noeud* racine) {
     return 1;
   else
     return nbFeuilles(racine->droite) + nbFeuilles(racine->gauche);
+}
+
+void listerFeuilles(Noeud* racine, char* (*afficher)(Objet*)) {
+  if (racine != NULL) {
+    if (estFeuille(racine)) {
+      printf("%s", afficher(racine->reference));
+    } else {
+      listerFeuilles(racine->gauche, afficher);
+      listerFeuilles(racine->droite, afficher);
+    }
+  }
+}
+
+bool egalite_arbre(Noeud* racine1, Noeud* racine2,
+                   int (*comparer)(Objet*, Objet*)) {
+  bool res = false;
+  if ((racine1 == NULL) && (racine2 == NULL)) {
+    res = true;
+  } else if ((racine1 != NULL) && (racine2 != NULL)) {
+    if (comparer(racine1->reference, racine2->reference) == 0) {
+      if (egalite_arbre(racine1->gauche, racine2->gauche, comparer)) {
+        res = egalite_arbre(racine1->droite, racine2->droite, comparer);
+      }
+    }
+  }
+  return res;
 }

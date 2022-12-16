@@ -40,18 +40,20 @@ int main() {
   int *i = create_num_pointer(9);
   int *j = create_num_pointer(10);
 
-  Noeud *racine = cNd(a, cNd(b, cF(c), cNd(d, cF(e), cF(f))),
-                      cNd(g, NULL, cNd(h, cF(i), NULL)));
+  Noeud *racine1 = cNd(a, cNd(b, cF(c), cNd(d, cF(e), cF(f))),
+                       cNd(g, NULL, cNd(h, cF(i), NULL)));
+  Noeud *racine2 = cNd(b, cNd(c, cF(c), cNd(d, cF(e), cF(f))),
+                       cNd(g, NULL, cNd(h, cF(i), NULL)));
 
-  Arbre *nums = creer_arbre(racine, afficherInt, comparerInt);
+  // Arbre *nums = creer_arbre(racine, afficherInt, comparerInt);
 
-  prefixe(racine, afficherInt);
-  printf("\n");
-  infixe(racine, afficherInt);
-  printf("\n");
-  postfixe(racine, afficherInt);
+  // prefixe(racine, afficherInt);
+  // printf("\n");
+  // infixe(racine, afficherInt);
+  // printf("\n");
+  // postfixe(racine, afficherInt);
 
-  Noeud *p = trouverNoeud(racine, j, comparerInt);
+  // Noeud *p = trouverNoeud(racine, j, comparerInt);
 
   // if (p != NULL) {
   //   printf("\nNoeud trouve: %s", afficherInt(p->reference));
@@ -59,7 +61,13 @@ int main() {
   //   printf("\nPas de noeud trouve!");
   // }
 
-  enLargeur(racine, afficherInt);
+  bool trees_equal = egalite_arbre(racine1, racine1, comparerInt);
+
+  if (trees_equal) {
+    printf("EQUAL");
+  } else {
+    printf("NOPË");
+  }
 
   return 0;
 }
