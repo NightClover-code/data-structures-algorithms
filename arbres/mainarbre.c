@@ -53,11 +53,13 @@ int main() {
 
   Noeud *p = trouverNoeud(racine, j, comparerInt);
 
-  if (p != NULL) {
-    printf("\nNoeud trouve: %s", afficherInt(p->reference));
-  } else {
-    printf("\nPas de noeud trouve!");
-  }
+  // if (p != NULL) {
+  //   printf("\nNoeud trouve: %s", afficherInt(p->reference));
+  // } else {
+  //   printf("\nPas de noeud trouve!");
+  // }
+
+  enLargeur(racine, afficherInt);
 
   return 0;
 }

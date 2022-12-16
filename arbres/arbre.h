@@ -25,7 +25,7 @@ Arbre* creer_arbre(Noeud* racine, char* (*afficher)(Objet*),
 void prefixe(Noeud* racine, char* (*afficher)(Objet*));
 void infixe(Noeud* racine, char* (*afficher)(Objet*));
 void postfixe(Noeud* racine, char* (*afficher)(Objet*));
-Noeud* trouverNoeud(Noeud* racine, Objet* obj,
-                    int (*comparer)(Objet*, Objet*));  // 13
+Noeud* trouverNoeud(Noeud* racine, Objet* obj, int (*comparer)(Objet*, Objet*));
+void enLargeur(Noeud* racine, char* (*afficher)(Objet*));
 
 #endif
