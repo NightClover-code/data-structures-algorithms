@@ -70,6 +70,7 @@ Noeud* trouver_noeud(Noeud* racine, Objet* obj,
 void en_largeur(Noeud* racine, char* (*afficher)(Objet*)) {
   Liste* li = cree_liste(0, afficher, NULL);
   inserer_en_fin(li, racine);
+
   while (!liste_vide(li)) {
     Noeud* extrait = (Noeud*)extraire_en_tete(li);
     printf("%s->", afficher(extrait->reference));
@@ -85,7 +86,7 @@ int maximum(int a, int b) {
     return b;
 }
 
-bool estFeuille(Noeud* racine) {
+bool est_feuille(Noeud* racine) {
   return (racine->droite == NULL) && (racine->gauche == NULL);
 }
 
@@ -106,19 +107,19 @@ int hauteur(Noeud* racine) {
 int nbFeuilles(Noeud* racine) {
   if (racine == NULL)
     return 0;
-  else if (estFeuille(racine))
+  else if (est_feuille(racine))
     return 1;
   else
     return nbFeuilles(racine->droite) + nbFeuilles(racine->gauche);
 }
 
-void listerFeuilles(Noeud* racine, char* (*afficher)(Objet*)) {
+void lister_feuilles(Noeud* racine, char* (*afficher)(Objet*)) {
   if (racine != NULL) {
-    if (estFeuille(racine)) {
+    if (est_feuille(racine)) {
       printf("%s", afficher(racine->reference));
     } else {
-      listerFeuilles(racine->gauche, afficher);
-      listerFeuilles(racine->droite, afficher);
+      lister_feuilles(racine->gauche, afficher);
+      lister_feuilles(racine->droite, afficher);
     }
   }
 }

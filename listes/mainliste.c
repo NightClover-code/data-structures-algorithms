@@ -50,9 +50,10 @@ int main() {
   Liste *li;
   int cod;
   int *pt, *obj;
-  do {
-    cod = menu();
-    switch (cod) {
+  bool fini = false;
+
+  while (!fini) {
+    switch (menu()) {
       case 1: {
         li = cree_liste(0, ecrireEntier, comparerInt);
         break;
@@ -117,6 +118,12 @@ int main() {
         detruire_liste(li);
         break;
       }
+      case 12: {
+        fini = true;
+        break;
+      }
+      default:
+        break;
     }
-  } while (cod != 12);
+  }
 }

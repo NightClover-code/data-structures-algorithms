@@ -20,6 +20,9 @@ typedef struct {
 Noeud* cNd(Objet* objet, Noeud* gauche, Noeud* droite);
 Noeud* cF(Objet* objet);
 
+int taille(Noeud* racine);
+int hauteur(Noeud* racine);
+
 void init_arbre(Arbre* arbre, Noeud* racine, char* (*afficher)(Objet*),
                 int (*comparer)(Objet*, Objet*));
 Arbre* creer_arbre(Noeud* racine, char* (*afficher)(Objet*),
