@@ -40,7 +40,7 @@ char *create_string(char *nom) {
   return pNom;
 }
 
-int main() {
+void main() {
   char *a = create_string("Samir");
   char *b = create_string("Kamal");
   char *c = create_string("Yassine");

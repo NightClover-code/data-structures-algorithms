@@ -39,8 +39,8 @@ void init_liste(Liste *li, int type, char *(*afficher)(Objet *),
   li->comparer = comparer;
 }
 
-Liste *cree_liste(int type, char *(*afficher)(Objet *),
-                  int (*comparer)(Objet *, Objet *)) {
+Liste *creer_liste(int type, char *(*afficher)(Objet *),
+                   int (*comparer)(Objet *, Objet *)) {
   Liste *li = (Liste *)malloc(sizeof(Liste));
   init_liste(li, type, afficher, comparer);
   return li;
@@ -73,7 +73,7 @@ void inserer_en_fin(Liste *li, Objet *objet) {
   inserer_apres(li, li->dernier, objet);
 }
 
-void afficher_liste(Liste *li) {
+void lister_liste(Liste *li) {
   ouvrir_liste(li);
   while (!fin_liste(li)) {
     Objet *objet = objet_courant(li);

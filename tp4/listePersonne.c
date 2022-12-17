@@ -7,6 +7,7 @@
 #include "personne.h"
 
 int menu() {
+  int cod;
   printf("\n\n GESTION D'UNE LISTE D'ENTIERS \n\n");
   printf("0 - Fin\n");
   printf("1 - Insertion en tete de liste \n");
@@ -18,26 +19,27 @@ int menu() {
   printf("7 - Recherche d’un element à partir de son nom \n");
   printf("8 - Destruction de la liste \n");
   printf("\n");
-  printf("Votre choix ? ");
-
-  int code;
-  scanf("%d", &code);
+  printf("Votre choix?\n");
+  scanf("%d", &cod);
+  getchar();
   printf("\n");
-  return code;
+  return cod;
 }
 
-int main() {
+void main() {
   Liste* lp = creer_liste(0, afficher_personne, comparer_personne);
-  bool fini = false;
   Personne *p, *pp, *extrait, *personne_cherche;
   ch15 nom, prenom;
 
+  bool fini = false;
+
   while (!fini) {
     switch (menu()) {
-      case 0:
+      case 0: {
         fini = true;
         break;
-      case 1:
+      }
+      case 1: {
         printf("Nom de la personne: ");
         scanf("%s", &nom);
         printf("Prenom de la personne: ");
@@ -45,7 +47,8 @@ int main() {
         p = cree_personne(nom, prenom);
         inserer_en_tete(lp, p);
         break;
-      case 2:
+      }
+      case 2: {
         printf("Nom de la personne: ");
         scanf("%s", &nom);
         printf("Prenom de la personne: ");
@@ -53,7 +56,8 @@ int main() {
         p = cree_personne(nom, prenom);
         inserer_en_fin(lp, p);
         break;
-      case 3:
+      }
+      case 3: {
         extrait = (Personne*)extraire_en_tete(lp);
         if (extrait != NULL) {
           printf("Element %s %s extrait de la liste!", extrait->nom,
@@ -62,7 +66,8 @@ int main() {
           printf("Liste vide");
         }
         break;
-      case 4:
+      }
+      case 4: {
         extrait = (Personne*)extraire_fin(lp);
         if (extrait != NULL) {
           printf("Element %s %s extrait de la liste!", extrait->nom,
@@ -70,7 +75,8 @@ int main() {
         } else {
           printf("Liste vide");
         }
-      case 5:
+      }
+      case 5: {
         printf("Nom de la personne a extraire: ");
         scanf("%s", &nom);
         personne_cherche = cree_personne(nom, "?");
@@ -81,10 +87,12 @@ int main() {
           printf("Element introuvable");
         }
         break;
-      case 6:
+      }
+      case 6: {
         lister_liste(lp);
         break;
-      case 7:
+      }
+      case 7: {
         printf("Nom de la personne a rechercher: ");
         scanf("%s", &nom);
         personne_cherche = cree_personne(nom, "?");
@@ -94,11 +102,12 @@ int main() {
         } else {
           printf("Element introuvable");
         }
-      case 8:
+        break;
+      }
+      case 8: {
         detruire_liste(lp);
         break;
+      }
     }
   }
-
-  return 0;
 }
