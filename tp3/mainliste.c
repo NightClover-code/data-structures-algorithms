@@ -5,37 +5,14 @@
 
 #include "liste.h"
 
-int menu() {
-  int cod;
-  printf("\n\nGESTION D'UNE LISTE D'ENTIERS\n\n");
-  printf("1-Creer une liste\n");
-  printf("2-Retourner le nombre des objets\n");
-  printf("3-Verifier si la liste est vide\n");
-  printf("4-Insertion en tete de liste\n");
-  printf("5-Insertion en fin de liste\n");
-  printf("6-Retrait en tete de liste\n");
-  printf("7-Retrait en fin de liste\n");
-  printf("8-Retrait d'un ovjet a partir de sa reference\n");
-  printf("9-Afficher les objets de la liste\n");
-  printf("10-Chercher un objet\n");
-  printf("11-Destruction de la liste\n");
-  printf("12-Fin\n");
-
-  printf("\n");
-  printf("Votre choix?\n");
-  scanf("%d", &cod);
-  printf("\n");
-  return cod;
-}
-
-char *ecrireEntier(void *obj) {
+char *afficherInt(void *obj) {
   int *entier = (int *)obj;
   char *output = (char *)malloc(sizeof(int));
   snprintf(output, sizeof(int), "%d \n", *entier);
   return output;
 }
 
-int comparerEntier(void *obj1, void *obj2) {
+int comparerInt(void *obj1, void *obj2) {
   int *b = (int *)obj2;
   int *a = (int *)obj1;
   if (*a > *b)
@@ -46,53 +23,65 @@ int comparerEntier(void *obj1, void *obj2) {
     return -1;
 }
 
+int menu() {
+  int cod;
+  printf("\n\nGESTION D'UNE LISTE D'ENTIERS\n\n");
+  printf("1-Creer une liste\n");
+  printf("2-Insertion en tete de liste\n");
+  printf("3-Insertion en fin de liste\n");
+  printf("4-Retrait en tete de liste\n");
+  printf("5-Retrait en fin de liste\n");
+  printf("6-Retrait d'un objet a partir de sa reference\n");
+  printf("7-Afficher les objets de la liste\n");
+  printf("8-Chercher un objet\n");
+  printf("9-Destruction de la liste\n");
+  printf("10-Fin\n");
+  printf("\n");
+  printf("Votre choix?\n");
+  scanf("%d", &cod);
+  getchar();
+  printf("\n");
+  return cod;
+}
+
 void main() {
   Liste *li;
   int cod;
-  int *pt, *obj;
+  int *pt = (int *)malloc(sizeof(int));
+  int *obj = (int *)malloc(sizeof(int));
+
   bool fini = false;
 
   while (!fini) {
     switch (menu()) {
       case 1: {
-        li = creer_liste(0, ecrireEntier, comparerEntier);
+        li = creer_liste(0, afficherInt, comparerInt);
         break;
       }
       case 2: {
-        printf("Le nombre d'element est : %d element.", li->nbElt);
-        break;
-      }
-      case 3: {
-        if (li->premier == NULL || li->nbElt == 0)
-          printf("La liste est vide");
-        else
-          printf("La liste contient %d element!", li->nbElt);
-        break;
-      }
-      case 4: {
-        printf("Element a inserer en tete de liste:");
+        printf("Element a inserer en tete de liste: ");
         scanf("%d", pt);
         inserer_en_tete(li, pt);
         break;
       }
-      case 5: {
-        printf("Element a inserer en fin de liste:");
+      case 3: {
+        printf("Element a inserer en fin de liste: ");
         scanf("%d", pt);
         inserer_en_fin(li, pt);
         break;
       }
-      case 6: {
+      case 4: {
         pt = (int *)extraire_en_tete(li);
-        printf("l'objet extrait en tete de liste  est %d\n", *pt);
+        printf("l'objet extrait en tete de liste est %d\n", *pt);
         break;
       }
-      case 7: {
+      case 5: {
         pt = (int *)extraire_fin(li);
-        printf("l'objet extrait en fin de liste  est %d\n", *pt);
+        printf("l'objet extrait en fin de liste est %d\n", *pt);
         break;
       }
-      case 8: {
-        printf("Saisir l'objet que vous voulait extraire");
+      case 6: {
+        printf("Saisir l'objet que vous voulait extraire: ");
         scanf("%d", obj);
         Element *b = (Element *)chercher_objet(li, obj);
         if (extraire_objet(li, b))
@@ -101,12 +90,12 @@ void main() {
           printf("l'objet n est pas trouvee!");
         break;
       }
-      case 9: {
+      case 7: {
         lister_liste(li);
         break;
       }
-      case 10: {
-        printf("Saisir l'objet recherche");
+      case 8: {
+        printf("Saisir l'objet recherche: ");
         scanf("%d", obj);
         if (chercher_objet(li, obj))
           printf("L objet est trouvee!");
@@ -114,11 +103,11 @@ void main() {
           printf("l objet n est pas trouvee!");
         break;
       }
-      case 11: {
+      case 9: {
         detruire_liste(li);
         break;
       }
-      case 12: {
+      case 10: {
         fini = true;
         break;
       }

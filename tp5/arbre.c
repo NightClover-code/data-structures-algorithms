@@ -68,7 +68,7 @@ Noeud* trouver_noeud(Noeud* racine, Objet* obj,
 }
 
 void en_largeur(Noeud* racine, char* (*afficher)(Objet*)) {
-  Liste* li = cree_liste(0, afficher, NULL);
+  Liste* li = creer_liste(0, afficher, NULL);
   inserer_en_fin(li, racine);
 
   while (!liste_vide(li)) {

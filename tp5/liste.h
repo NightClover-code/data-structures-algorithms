@@ -22,8 +22,8 @@ typedef struct {
 
 static Element* creer_element();
 static void ouvrir_liste(Liste* li);
-static bool fin_liste(Liste* li);
-static bool liste_vide(Liste* li);
+bool fin_liste(Liste* li);
+bool liste_vide(Liste* li);
 
 static Element* element_courant(Liste* li);
 static Objet* objet_courant(Liste* li);
