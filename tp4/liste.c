@@ -9,7 +9,7 @@ bool fin_liste(Liste *li) { return li->courant == NULL; };
 void ouvrir_liste(Liste *li) { li->courant = li->premier; };
 
 // helper functions
-static Element *cree_element() { return (Element *)malloc(sizeof(Element)); }
+static Element *creer_element() { return (Element *)malloc(sizeof(Element)); }
 bool liste_vide(Liste *li) { return li->nbElt == 0; }
 int nb_element(Liste *li) { return li->nbElt; }
 
@@ -39,16 +39,15 @@ void init_liste(Liste *li, int type, char *(*afficher)(Objet *),
   li->comparer = comparer;
 }
 
-Liste *cree_liste(int type, char *(*afficher)(Objet *),
-                  int (*comparer)(Objet *, Objet *)) {
+Liste *creer_liste(int type, char *(*afficher)(Objet *),
+                   int (*comparer)(Objet *, Objet *)) {
   Liste *li = (Liste *)malloc(sizeof(Liste));
   init_liste(li, type, afficher, comparer);
   return li;
 }
 
 void inserer_en_tete(Liste *li, Objet *objet) {
-  Element *nouveau = cree_element();
-
+  Element *nouveau = creer_element();
   nouveau->reference = objet;
   nouveau->suivant = li->premier;
   li->premier = nouveau;
@@ -60,7 +59,7 @@ void inserer_apres(Liste *li, Element *precedent, Objet *objet) {
   if (precedent == NULL) {
     inserer_en_tete(li, objet);
   } else {
-    Element *nouveau = cree_element();
+    Element *nouveau = creer_element();
     nouveau->reference = objet;
     nouveau->suivant = precedent->suivant;
     precedent->suivant = nouveau;
@@ -73,7 +72,7 @@ void inserer_en_fin(Liste *li, Objet *objet) {
   inserer_apres(li, li->dernier, objet);
 }
 
-void afficher_liste(Liste *li) {
+void lister_liste(Liste *li) {
   ouvrir_liste(li);
   while (!fin_liste(li)) {
     Objet *objet = objet_courant(li);
@@ -89,7 +88,6 @@ Objet *chercher_objet(Liste *li, Objet *objet_cherche) {
     objet = objet_courant(li);
     trouve = li->comparer(objet_cherche, objet) == 0;
   }
-
   return trouve ? objet_cherche : NULL;
 }
 
@@ -100,7 +98,6 @@ Objet *extraire_en_tete(Liste *li) {
     if (li->premier == NULL) li->dernier = NULL;  //???
     li->nbElt--;
   }
-
   return extrait != NULL ? extrait->reference : NULL;
 }
 
@@ -128,7 +125,6 @@ Objet *extraire_fin(Liste *li) {
     while (ptc->suivant != li->dernier) ptc = ptc->suivant;
     extrait = extraire_apres(li, ptc);
   }
-
   return extrait;
 }
 

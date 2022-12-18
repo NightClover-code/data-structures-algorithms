@@ -3,37 +3,44 @@
 
 #include <stdbool.h>
 
-typedef void Objet;  // pointer to empty data (void)
+typedef void Objet;
 
 typedef struct element {
-  Objet *reference;
-  struct element *suivant;
+  Objet* reference;
+  struct element* suivant;
 } Element;
 
 typedef struct {
-  Element *premier;
-  Element *dernier;
-  Element *courant;
+  Element* premier;
+  Element* dernier;
+  Element* courant;
   int nbElt;
-  int type;  // 0: simple, 1:croissant, 2:décroissant
-  char *(*afficher)(Objet *);
-  int (*comparer)(Objet *, Objet *);  // 0, < 0, > 0
+  int type;
+  char* (*afficher)(Objet*);
+  int (*comparer)(Objet*, Objet*);
 } Liste;
 
-bool liste_vide(Liste *li);
-void init_liste(Liste *li, int type, char *(*afficher)(Objet *),
-                int (*comparer)(Objet *, Objet *));
-Liste *cree_liste(int type, char *(*afficher)(Objet *),
-                  int (*comparer)(Objet *, Objet *));
-void inserer_en_tete(Liste *li, Objet *objet);
-void inserer_en_fin(Liste *li, Objet *objet);
-void inserer_apres(Liste *li, Element *precedent, Objet *objet);
-void afficher_liste(Liste *li);
-Objet *chercher_objet(Liste *li, Objet *objet);
-Objet *extraire_en_tete(Liste *li);
-Objet *extraire_apres(Liste *li, Element *precedent);
-Objet *extraire_fin(Liste *li);
-bool extraire_objet(Liste *li, Objet *objet);
-void detruire_liste(Liste *li);
+static Element* creer_element();
+static void ouvrir_liste(Liste* li);
+static bool fin_liste(Liste* li);
+static bool liste_vide(Liste* li);
+
+static Element* element_courant(Liste* li);
+static Objet* objet_courant(Liste* li);
+
+void init_liste(Liste* li, int type, char* (*afficher)(Objet*),
+                int (*comparer)(Objet*, Objet*));
+Liste* creer_liste(int type, char* (*afficher)(Objet*),
+                   int (*comparer)(Objet*, Objet*));
+void inserer_en_tete(Liste* li, Objet* objet);
+static void inserer_apres(Liste* li, Element* precedent, Objet* objet);
+void inserer_en_fin(Liste* li, Objet* objet);
+Objet* extraire_en_tete(Liste* li);
+static Objet* extraire_apres(Liste* li, Element* precedent);
+Objet* extraire_fin(Liste* li);
+bool extraire_objet(Liste* li, Objet* objet);
+Objet* chercher_objet(Liste* li, Objet* objet_cherche);
+void lister_liste(Liste* li);
+void detruire_liste(Liste* li);
 
 #endif

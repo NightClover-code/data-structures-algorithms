@@ -35,7 +35,7 @@ char *ecrireEntier(void *obj) {
   return output;
 }
 
-int comparerInt(void *obj1, void *obj2) {
+int comparerEntier(void *obj1, void *obj2) {
   int *b = (int *)obj2;
   int *a = (int *)obj1;
   if (*a > *b)
@@ -55,7 +55,7 @@ void main() {
   while (!fini) {
     switch (menu()) {
       case 1: {
-        li = cree_liste(0, ecrireEntier, comparerInt);
+        li = creer_liste(0, ecrireEntier, comparerEntier);
         break;
       }
       case 2: {
@@ -102,7 +102,7 @@ void main() {
         break;
       }
       case 9: {
-        afficher_liste(li);
+        lister_liste(li);
         break;
       }
       case 10: {

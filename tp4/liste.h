@@ -20,7 +20,7 @@ typedef struct {
   int (*comparer)(Objet*, Objet*);
 } Liste;
 
-static Element* cree_element();
+static Element* creer_element();
 static void ouvrir_liste(Liste* li);
 static bool fin_liste(Liste* li);
 static bool liste_vide(Liste* li);
