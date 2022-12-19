@@ -1,3 +1,6 @@
 .vscode
 *.exe
 drive
+maingraphemat.c
+mainarbre.c
+mainliste.c
