@@ -10,5 +10,9 @@ void sort_array(int *arr, int n);
 void merge_arrays(int arr1[], int arr2[], int arr3[], int n, int m, int p);
 char *multichar(char *s, int n);
 void suite(int n);
+void add_matrices(int **arr1, int **arr2, int m, int l, int n, int p);
+void multiply_matrices(int **arr1, int **arr2, int m, int l, int n, int p);
+void print_matrix(int **Tableau, int n, int m);
+void randomize_matrix(int **Tableau, int n, int m);
 
 #endif
